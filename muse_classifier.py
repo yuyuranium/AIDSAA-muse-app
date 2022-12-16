@@ -39,13 +39,10 @@ class MuseClassifier():
 
     def predict(self, raw_data):
         print('Predicting...')
-        aug_feature = self.gen_aug_feature(raw_data)
+        x_audio, x_feat = np.expand_dims(raw_data, axis=0), self.gen_aug_feature(raw_data)
 
-        x_audio, x_feat = np.expand_dims(raw_data, axis=0), aug_feature
-
-        print(x_audio.shape, x_feat.shape)
         pred = self.model.predict([x_audio, x_feat])[0]
-        with np.printoptions(suppress=False):
-            print(pred)
+        print(pred)
+
         print('Done predicting')
         return np.argmax(pred)

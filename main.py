@@ -113,6 +113,8 @@ class MainWindow(QMainWindow):
             raw_data = np.array(self.npdata, dtype=float)
             self.model_ready = False
             p = self.m.predict(raw_data)
+
+            # Show result to App
             self.ui.label.setText(self.d[p])
 
         print('Predicting thread stopped')
